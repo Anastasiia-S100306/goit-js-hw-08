@@ -92,14 +92,13 @@ gallery.innerHTML = markup;
 gallery.addEventListener('click', (event) => {
   event.preventDefault();
 
-  const img = event.target.closest('.gallery-image');
-  if (!img) return;
+  if (event.target.nodeName !== 'IMG') return;
 
-  const largeImg = img.dataset.source;
+  const largeImg = event.target.dataset.source;
 
-  const instance = basicLightbox.create(`
-    <img src="${largeImg}" width="800" height="600">
-  `);
+  const instance = window.basicLightbox.create(`
+  <img src="${largeImg}">
+`);
 
   instance.show();
 });
